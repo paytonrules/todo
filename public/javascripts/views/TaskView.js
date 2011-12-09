@@ -4,7 +4,8 @@ namespace('Todo.views', {
     className : 'task',
 
     events : {
-      "click.task" : "editTask"
+      "click.task" : "editTask",
+      'submit form#delete-task' : 'deleteTask'
     },
 
     initialize: function () {
@@ -21,6 +22,10 @@ namespace('Todo.views', {
       this.resetEdit();
       this.editTaskView = new Todo.views.EditTaskView({model: this.model});
       $('.edit').html(this.editTaskView.render().el);
+    },
+
+    deleteTask: function() {
+      this.model.destroy();
     },
 
     resetEdit: function () {

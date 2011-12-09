@@ -33,6 +33,22 @@ describe("TaskView", function () {
 
       expect(bindSpy).toHaveBeenCalledWith("change", view.render, view)
     });
+
+    it("binds 'submit form#delete-task' to 'deleteTask'", function() {
+      expect(this.view.events['submit form#delete-task']).toEqual('deleteTask');
+    });
+  });
+
+  describe("deleteTask", function() {
+
+    it("should call delete on the model", function() {
+      var destroySpy = sinon.spy(this.model, "destroy");
+
+      this.view.deleteTask();
+
+      expect(destroySpy).toHaveBeenCalled();
+    });
+
   });
 
   describe("editTask", function () {
